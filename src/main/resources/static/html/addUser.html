@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de usuario</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="logo">SimpleRPG</a>
+      <ul>
+        <li><a href="/html/listUsers.html">Lista de usuarios</a></li>
+        <li><a href="/html/addUser.html">Adicionar usuario</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div class="form-container">
+        <form id="form-add" method="post">
+          <label for="name">Nome:</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Fulano de Tal..."
+            autocomplete="off"
+          />
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="fulano@email.com" />
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="/js/createUser.js"></script>
+  </body>
+</html>
