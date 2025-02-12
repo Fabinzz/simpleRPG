@@ -17,6 +17,13 @@ public class UserDTO {
         this.name = user.getName();
         this.email = user.getEmail();
     }
+    public User converter(){
+        User user = new User();
+        user.setId(id);
+        user.setName(name);
+        user.setEmail(email);
+        return user;
+    }
 
     public UserDTO() {
     }
