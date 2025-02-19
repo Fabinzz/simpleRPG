@@ -17,11 +17,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private UserRepository userRepository;
     private UserService userService;
 
-    public UserController( UserRepository userRepository, UserService userService){
-        this.userRepository = userRepository;
+    public UserController(UserService userService){
         this.userService = userService;
     }
 
@@ -52,12 +50,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable String id, @RequestBody User user) {
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String id, @RequestBody UserDTO userDTO) {
       try{
-          UserDTO updatedUser = userService.updateUser(id, user);
+          UserDTO updatedUser = userService.updateUser(id, userDTO);
           return ResponseEntity.ok(updatedUser);
       }catch(ResourceNotFoundException exception){
-          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+          return ResponseEntity.notFound().build();
       }
     }
 

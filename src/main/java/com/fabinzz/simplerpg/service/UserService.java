@@ -4,12 +4,8 @@ import com.fabinzz.simplerpg.dto.UserDTO;
 import com.fabinzz.simplerpg.exception.ResourceNotFoundException;
 import com.fabinzz.simplerpg.model.User;
 import com.fabinzz.simplerpg.repository.UserRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,12 +46,12 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO updateUser( String id, User user){
+    public UserDTO updateUser( String id, UserDTO userDTO){
         Optional<User> optUser = userRepository.findById(id);
 
         if (optUser.isPresent()){
             User existingUser = optUser.get();
-            updateUserFields(existingUser, user);
+            updateUserFields(existingUser, userDTO);
             userRepository.save(existingUser);
 
             System.out.println(id + " foi atualizado com sucesso!");
@@ -77,12 +73,12 @@ public class UserService {
         }
     }
 
-    private void updateUserFields(User existingUser, User newUser){
-        if (newUser.getName() != null && !newUser.getName().isEmpty()){
-            existingUser.setName(newUser.getName());
+    private void updateUserFields(User existingUser, UserDTO newUserDTO){
+        if (newUserDTO.getName() != null && !newUserDTO.getName().isEmpty()){
+            existingUser.setName(newUserDTO.getName());
         }
-        if (newUser.getEmail() != null && !newUser.getEmail().isEmpty()){
-            existingUser.setEmail(newUser.getEmail());
+        if (newUserDTO.getEmail() != null && !newUserDTO.getEmail().isEmpty()){
+            existingUser.setEmail(newUserDTO.getEmail());
         }
     }
 }
